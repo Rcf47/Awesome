@@ -56,7 +56,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("/home/vadim/.config/awesome/themes/catppuccin/theme.lua")
+beautiful.init("/home/vadim/.config/awesome/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "wezterm"

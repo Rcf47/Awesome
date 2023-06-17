@@ -11,24 +11,24 @@ local themes_path                               = gfs.get_themes_dir()
 
 local theme                                     = {}
 
-theme.font                                      = "sans 8"
+theme.font                                      = "Fira Code 16"
 
-theme.bg_normal                                 = "#222222"
-theme.bg_focus                                  = "#535d6c"
-theme.bg_urgent                                 = "#ff0000"
+theme.bg_normal                                 = "#1E1E2E"
+theme.bg_focus                                  = "#1E1E2E"
+theme.bg_urgent                                 = "#f38ba8"
 theme.bg_minimize                               = "#444444"
 theme.bg_systray                                = theme.bg_normal
 
-theme.fg_normal                                 = "#aaaaaa"
-theme.fg_focus                                  = "#ffffff"
-theme.fg_urgent                                 = "#ffffff"
+theme.fg_normal                                 = "#cdd6f4"
+theme.fg_focus                                  = "#A4B9EF"
+theme.fg_urgent                                 = "#cdd6f4"
 theme.fg_minimize                               = "#ffffff"
 
 theme.useless_gap                               = dpi(0)
 theme.border_width                              = dpi(1)
-theme.border_normal                             = "#000000"
-theme.border_focus                              = "#535d6c"
-theme.border_marked                             = "#91231c"
+theme.border_normal                             = "#1E1E2E"
+theme.border_focus                              = "#A4B9EF"
+theme.border_marked                             = "#A4B9EF"
 
 -- There are other variable sets
 -- overriding the default one when
@@ -62,8 +62,8 @@ theme.taglist_squares_unsel                     = theme_assets.taglist_squares_u
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
 theme.menu_submenu_icon                         = themes_path .. "default/submenu.png"
-theme.menu_height                               = dpi(15)
-theme.menu_width                                = dpi(100)
+theme.menu_height                               = dpi(40)
+theme.menu_width                                = dpi(240)
 
 -- You can add as many variables as
 -- you wish and access them by using
@@ -97,7 +97,7 @@ theme.titlebar_maximized_button_focus_inactive  = themes_path .. "default/titleb
 theme.titlebar_maximized_button_normal_active   = themes_path .. "default/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active    = themes_path .. "default/titlebar/maximized_focus_active.png"
 
-theme.wallpaper                                 = "~/.config/awesome/default/wall.png"
+theme.wallpaper                                 = "~/.config/awesome/themes/catppuccin/dark-cat-rosewater.png"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh                              = themes_path .. "default/layouts/fairhw.png"
