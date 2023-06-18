@@ -223,7 +223,7 @@ awful.screen.connect_for_each_screen(function(s)
   }
 
   -- Create the wibox
-  s.mywibox = awful.wibar({ position = "top", screen = s })
+  s.mywibox = awful.wibar({ position = "top", screen = s, opacity = 0.65 })
 
   -- Add widgets to the wibox
   s.mywibox:setup {
@@ -239,6 +239,7 @@ awful.screen.connect_for_each_screen(function(s)
     {
       -- Right widgets
       layout = wibox.layout.fixed.horizontal,
+      spacing = 10,
       mykeyboardlayout,
       wibox.widget.systray(),
       mytextclock,
@@ -265,6 +266,7 @@ globalkeys = gears.table.join(
     end,
     { description = "toggle statusbar" }
   ),
+  awful.key({}, "Print", function() awful.util.spawn("scrot -e 'mv $f ~/screenshots/ 2>/dev/null'", false) end),
   awful.key({ modkey, }, "s", hotkeys_popup.show_help,
     { description = "show help", group = "awesome" }),
   awful.key({ modkey, }, "Left", awful.tag.viewprev,
@@ -604,6 +606,12 @@ client.connect_signal("mouse::enter", function(c)
   c:emit_signal("request::activate", "mouse_enter", { raise = false })
 end)
 
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+client.connect_signal("focus", function(c)
+  c.border_color = beautiful.border_focus
+  c.opacity = 0.5
+end)
+client.connect_signal("unfocus", function(c)
+  c.border_color = beautiful.border_normal
+  c.opacity = 0.7
+end)
 -- }}}
