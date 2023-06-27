@@ -18,6 +18,13 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+-- Load Debian menu entries
+local debian = require("debian.menu")
+local has_fdo, freedesktop = pcall(require, "freedesktop")
+
+--connect autorun
+awful.spawn.with_shell("~/.config/awesome/autorun.sh")
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -49,11 +56,11 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("~/.config/awesome/default/theme.lua")
+beautiful.init("/home/vadim/.config/awesome/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "wezterm"
-editor = os.getenv("EDITOR") or "nvim"
+editor = os.getenv("nvim") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
@@ -94,11 +101,24 @@ myawesomemenu = {
   { "quit",        function() awesome.quit() end },
 }
 
-mymainmenu = awful.menu({
-  items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-    { "open terminal", terminal }
-  }
-})
+local menu_awesome = { "awesome", myawesomemenu, beautiful.awesome_icon }
+local menu_terminal = { "open terminal", terminal }
+
+if has_fdo then
+  mymainmenu = freedesktop.menu.build({
+    before = { menu_awesome },
+    after = { menu_terminal }
+  })
+else
+  mymainmenu = awful.menu({
+    items = {
+      menu_awesome,
+      { "Debian", debian.menu.Debian_menu.Debian },
+      menu_terminal,
+    }
+  })
+end
+
 
 mylauncher = awful.widget.launcher({
   image = beautiful.awesome_icon,
@@ -176,7 +196,7 @@ awful.screen.connect_for_each_screen(function(s)
   set_wallpaper(s)
 
   -- Each screen has its own tag table.
-  awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+  awful.tag({ "Chrome", "Terminal", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 
   -- Create a promptbox for each screen
   s.mypromptbox = awful.widget.prompt()
@@ -203,20 +223,23 @@ awful.screen.connect_for_each_screen(function(s)
   }
 
   -- Create the wibox
-  s.mywibox = awful.wibar({ position = "top", screen = s })
+  s.mywibox = awful.wibar({ position = "top", screen = s, opacity = 0.65 })
 
   -- Add widgets to the wibox
   s.mywibox:setup {
     layout = wibox.layout.align.horizontal,
-    { -- Left widgets
+    {
+      -- Left widgets
       layout = wibox.layout.fixed.horizontal,
       mylauncher,
       s.mytaglist,
       s.mypromptbox,
     },
     s.mytasklist, -- Middle widget
-    {             -- Right widgets
+    {
+      -- Right widgets
       layout = wibox.layout.fixed.horizontal,
+      spacing = 10,
       mykeyboardlayout,
       wibox.widget.systray(),
       mytextclock,
@@ -236,6 +259,15 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
+  awful.key({ modkey, "Shift" }, "t", awful.titlebar.toggle),
+  awful.key({ modkey }, "b",
+    function()
+      myscreen = awful.screen.focused()
+      myscreen.mywibox.visible = not myscreen.mywibox.visible
+    end,
+    { description = "toggle statusbar" }
+  ),
+  awful.key({}, "Print", function() awful.util.spawn("scrot -e 'mv $f ~/screenshots/ 2>/dev/null'", false) end),
   awful.key({ modkey, }, "s", hotkeys_popup.show_help,
     { description = "show help", group = "awesome" }),
   awful.key({ modkey, }, "Left", awful.tag.viewprev,
@@ -336,7 +368,6 @@ globalkeys = gears.table.join(
 )
 
 clientkeys = gears.table.join(
-  awful.key({ modkey, "Shift" }, "t", awful.titlebar.toggle),
   awful.key({ modkey, }, "f",
     function(c)
       c.fullscreen = not c.fullscreen
@@ -386,9 +417,6 @@ clientkeys = gears.table.join(
 for i = 1, 9 do
   globalkeys = gears.table.join(globalkeys,
     -- View tag only.
-    awful.key({ modkey }, "b", function()
-      mouse.screen.mywibox.visible = not mouse.screen.mywibox.visible
-    end),
     awful.key({ modkey }, "#" .. i + 9,
       function()
         local screen = awful.screen.focused()
@@ -456,7 +484,11 @@ root.keys(globalkeys)
 awful.rules.rules = {
   -- All clients will match this rule.
   {
-    rule = {},
+    rule = { class = "org.wezfurlong.wezterm" },
+    properties = { opacity = 0.15 }
+  },
+  {
+    rule = { { instance = "Firefox" }, properties = { tag = 2 } },
     properties = {
       border_width = beautiful.border_width,
       border_color = beautiful.border_normal,
@@ -488,7 +520,6 @@ awful.rules.rules = {
         "Wpa_gui",
         "veromix",
         "xtightvncviewer" },
-
       -- Note that the name property shown in xprop might be set slightly after creation of the client
       -- and the name shown there might not match defined rules here.
       name = {
@@ -546,20 +577,24 @@ client.connect_signal("request::titlebars", function(c)
   )
 
   awful.titlebar(c):setup {
-    { -- Left
+    {
+      -- Left
       awful.titlebar.widget.iconwidget(c),
       buttons = buttons,
       layout  = wibox.layout.fixed.horizontal
     },
-    {   -- Middle
-      { -- Title
+    {
+      -- Middle
+      {
+        -- Title
         align  = "center",
         widget = awful.titlebar.widget.titlewidget(c)
       },
       buttons = buttons,
       layout  = wibox.layout.flex.horizontal
     },
-    { -- Right
+    {
+      -- Right
       awful.titlebar.widget.floatingbutton(c),
       awful.titlebar.widget.maximizedbutton(c),
       awful.titlebar.widget.stickybutton(c),
@@ -576,6 +611,13 @@ client.connect_signal("mouse::enter", function(c)
   c:emit_signal("request::activate", "mouse_enter", { raise = false })
 end)
 
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+client.connect_signal("focus", function(c)
+  c.border_color = beautiful.border_focus
+  c.opacity = 1
+end)
+client.connect_signal("unfocus", function(c)
+  c.border_color = beautiful.border_normal
+  c.opacity = 0.7
+end)
 -- }}}
+awful.util.spawn("compton")
