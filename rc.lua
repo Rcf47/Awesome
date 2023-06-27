@@ -386,7 +386,7 @@ clientkeys = gears.table.join(
     { description = "toggle keep on top", group = "client" }),
   awful.key({ modkey, }, "n",
     function(c)
-      Terminal -- The client currently has the input focus, so it cannot be
+      -- The client currently has the input focus, so it cannot be
       -- minimized, since minimized clients can't have the focus.
       c.minimized = true
     end,
