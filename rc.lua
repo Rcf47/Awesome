@@ -196,7 +196,7 @@ awful.screen.connect_for_each_screen(function(s)
   set_wallpaper(s)
 
   -- Each screen has its own tag table.
-  awful.tag({ "Terminal", "Chrome", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+  awful.tag({ "Chrome", "Terminal", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 
   -- Create a promptbox for each screen
   s.mypromptbox = awful.widget.prompt()
@@ -259,6 +259,7 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
+  awful.key({ modkey, "Shift" }, "t", awful.titlebar.toggle),
   awful.key({ modkey }, "b",
     function()
       myscreen = awful.screen.focused()
@@ -385,7 +386,7 @@ clientkeys = gears.table.join(
     { description = "toggle keep on top", group = "client" }),
   awful.key({ modkey, }, "n",
     function(c)
-      -- The client currently has the input focus, so it cannot be
+      Terminal -- The client currently has the input focus, so it cannot be
       -- minimized, since minimized clients can't have the focus.
       c.minimized = true
     end,
@@ -483,7 +484,11 @@ root.keys(globalkeys)
 awful.rules.rules = {
   -- All clients will match this rule.
   {
-    rule = {},
+    rule = { class = "org.wezfurlong.wezterm" },
+    properties = { opacity = 0.15 }
+  },
+  {
+    rule = { { instance = "Firefox" }, properties = { tag = 2 } },
     properties = {
       border_width = beautiful.border_width,
       border_color = beautiful.border_normal,
@@ -608,10 +613,11 @@ end)
 
 client.connect_signal("focus", function(c)
   c.border_color = beautiful.border_focus
-  c.opacity = 0.5
+  c.opacity = 1
 end)
 client.connect_signal("unfocus", function(c)
   c.border_color = beautiful.border_normal
   c.opacity = 0.7
 end)
 -- }}}
+awful.util.spawn("compton")
