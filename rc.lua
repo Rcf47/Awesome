@@ -176,7 +176,7 @@ awful.screen.connect_for_each_screen(function(s)
   set_wallpaper(s)
 
   -- Each screen has its own tag table.
-  awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+  awful.tag({ "Chrome", "Terminal", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 
   -- Create a promptbox for each screen
   s.mypromptbox = awful.widget.prompt()
@@ -458,14 +458,16 @@ awful.rules.rules = {
   {
     rule = {},
     properties = {
-      border_width = beautiful.border_width,
-      border_color = beautiful.border_normal,
-      focus = awful.client.focus.filter,
-      raise = true,
-      keys = clientkeys,
-      buttons = clientbuttons,
-      screen = awful.screen.preferred,
-      placement = awful.placement.no_overlap + awful.placement.no_offscreen
+      border_width         = beautiful.border_width,
+      border_color         = beautiful.border_normal,
+      focus                = awful.client.focus.filter,
+      raise                = true,
+      keys                 = clientkeys,
+      maximized_vertical   = false,
+      maximized_horizontal = false,
+      buttons              = clientbuttons,
+      screen               = awful.screen.preferred,
+      placement            = awful.placement.no_overlap + awful.placement.no_offscreen
     }
   },
 
@@ -579,3 +581,5 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+awful.util.spawn("compton")
