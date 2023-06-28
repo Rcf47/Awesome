@@ -18,6 +18,9 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+
+local debian = require("debian.menu")
+local has_fdo, freedesktop = pcall(require, "freedesktop")
 --connect autorun
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 -- {{{ Error handling
@@ -96,11 +99,23 @@ myawesomemenu = {
   { "quit",        function() awesome.quit() end },
 }
 
-mymainmenu = awful.menu({
-  items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-    { "open terminal", terminal }
-  }
-})
+local menu_awesome = { "Awesome", myawesomemenu, beautiful.awesome_icon }
+local menu_terminal = { "Open terminal", terminal }
+
+if has_fdo then
+  mymainmenu = freedesktop.menu.build({
+    before = { menu_awesome },
+    after = { menu_terminal }
+  })
+else
+  mymainmenu = awful.menu({
+    items = {
+      menu_awesome,
+      { "Debian", debian.menu.Debian_menu.Debian },
+      menu_terminal,
+    }
+  })
+end
 
 mylauncher = awful.widget.launcher({
   image = beautiful.awesome_icon,
