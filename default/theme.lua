@@ -44,7 +44,7 @@ theme.border_marked                             = "#A4B9EF"
 --theme.taglist_bg_focus = "#ff0000"
 
 -- Generate taglist squares:
-local taglist_square_size                       = dpi(1)
+local taglist_square_size                       = dpi(5)
 theme.taglist_squares_sel                       = theme_assets.taglist_squares_sel(
     taglist_square_size, theme.fg_normal
 )
