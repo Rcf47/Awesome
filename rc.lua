@@ -618,3 +618,16 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 awful.util.spawn("compton")
+
+do
+  local cmds =
+  {
+    "google-chrome",
+    "wezterm",
+    "pomatez"
+  }
+
+  for _, i in pairs(cmds) do
+    awful.util.spawn(i)
+  end
+end
