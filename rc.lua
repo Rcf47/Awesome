@@ -546,6 +546,10 @@ awful.rules.rules = {
     rule = { class = "TelegramDesktop" },
     properties = { screen = 1, tag = "Telegram" }
   },
+  {
+    rule = { class = "Google-chrome" },
+    properties = { screen = 1, tag = "Chrome" }
+  },
 }
 -- }}}
 
