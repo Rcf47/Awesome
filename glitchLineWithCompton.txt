@@ -1,0 +1,6 @@
+Go to NVIDIA X Server Settings application.
+Choose X Server Display Configuration.
+Click Advanced.
+Check Force Full Composition Pipeline.
+Apply.
+Probably restart the system.
