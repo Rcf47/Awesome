@@ -68,7 +68,11 @@ theme.menu_width                                = dpi(240)
 -- You can add as many variables as
 -- you wish and access them by using
 -- beautiful.variable in your rc.lua
---theme.bg_widget = "#cc0000"
+theme.widget_main_color                         = '#ffffff'
+theme.widget_red                                = "#cc0000"
+theme.widget_blue                               = '#00FFFF'
+theme.widget_green                              = '#00FF00'
+theme.widget_yellow                             = '#FFFF00'
 
 -- Define the image to load
 theme.titlebar_close_button_normal              = themes_path .. "default/titlebar/close_normal.png"
