@@ -624,7 +624,6 @@ do
   {
     "google-chrome",
     "wezterm",
-    "pomatez"
   }
 
   for _, i in pairs(cmds) do
