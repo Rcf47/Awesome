@@ -18,7 +18,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
-
+local pomodoroarc_widget = require("awesome-wm-widgets.pomodoroarc-widget.pomodoroarc")
 local debian = require("debian.menu")
 local has_fdo, freedesktop = pcall(require, "freedesktop")
 --connect autorun
@@ -235,6 +235,7 @@ awful.screen.connect_for_each_screen(function(s)
     {             -- Right widgets
       layout = wibox.layout.fixed.horizontal,
       mykeyboardlayout,
+      pomodoroarc_widget,
       wibox.widget.systray(),
       mytextclock,
       s.mylayoutbox,
@@ -253,6 +254,7 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
+  awful.key({ modkey, "Shift" }, "s", function() awful.spawn("pomo start") end),
   awful.key({ modkey, }, "s", hotkeys_popup.show_help,
     { description = "show help", group = "awesome" }),
   awful.key({ modkey, }, "Left", awful.tag.viewprev,
