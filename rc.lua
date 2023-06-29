@@ -254,7 +254,12 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
-  awful.key({ modkey, "Shift" }, "s", function() awful.spawn("pomo start") end),
+  awful.key({ modkey, "Shift" }, "t", function() awful.spawn("pomo start") end,
+    { description = "start", group = "pomodoro" }),
+  awful.key({ modkey, "Shift" }, "p", function() awful.spawn("pomo pause") end,
+    { description = "pause", group = "pomodoro" }),
+  awful.key({ modkey, "Shift" }, "s", function() awful.spawn("pomo stop") end,
+    { description = "stop", group = "pomodoro" }),
   awful.key({ modkey, }, "s", hotkeys_popup.show_help,
     { description = "show help", group = "awesome" }),
   awful.key({ modkey, }, "Left", awful.tag.viewprev,
