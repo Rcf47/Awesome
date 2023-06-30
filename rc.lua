@@ -18,11 +18,13 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
-local pomodoroarc_widget = require("awesome-wm-widgets.pomodoroarc-widget.pomodoroarc")
+local pomodoroarc_widget = require("myWidgets.pomodoroarc-widget.pomodoroarc")
 local debian = require("debian.menu")
 local has_fdo, freedesktop = pcall(require, "freedesktop")
 --connect autorun
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
+
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -254,7 +256,7 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
-  awful.key({ modkey, "Shift" }, "t", function() awful.spawn("pomo start") end,
+  awful.key({ modkey, "Shift" }, "r", function() awful.spawn("pomo start") end,
     { description = "start", group = "pomodoro" }),
   awful.key({ modkey, "Shift" }, "p", function() awful.spawn("pomo pause") end,
     { description = "pause", group = "pomodoro" }),
