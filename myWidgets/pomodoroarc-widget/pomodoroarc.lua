@@ -65,14 +65,14 @@ local update_graphic = function(widget, stdout, _, _, _)
     local workbreak = string.match(stdout, "[ P]?([BW])%d?%d?:%d?%d?")
     text.text       = pomomin
 
-    --    Helps debugging
-    --naughty.notify {
-    -- text = pomomin,
-    --title = "pomodoro debug",
-    --timeout = 5,
-    --hover_timeout = 0.5,
-    --width = 200,
-    --}
+    --      Helps debugging
+    --   naughty.notify {
+    --     text = pomomin,
+    --     title = "pomodoro debug",
+    --     timeout = 5,
+    --     hover_timeout = 0.5,
+    --     width = 200,
+    --   }
 
     if tonumber(pomomin) == 0 and tonumber(pomosec) == 0 then
       awful.spawn.with_shell("paplay ~/Music/Sounds/mixkit-classic-melodic-clock-strike-1058.wav")
@@ -89,6 +89,9 @@ local update_graphic = function(widget, stdout, _, _, _)
       elseif workbreak == "B" then -- color during pause
         widget.colors = { beautiful.widget_green }
         widget.value = tonumber(pomodoro / (5 * 60))
+        if tonumber(pomomin) == 0 and tonumber(pomosec) == 0 then
+          awful.spawn.with_shell("paplay ~/Music/Sounds/mixkit-classic-melodic-clock-strike-1058.wav")
+        end
       end
     elseif status == "P" then -- paused
       if workbreak == "W" then

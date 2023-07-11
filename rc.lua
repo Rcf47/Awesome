@@ -633,6 +633,7 @@ do
   {
     "google-chrome",
     "wezterm",
+    "steam"
   }
 
   for _, i in pairs(cmds) do
