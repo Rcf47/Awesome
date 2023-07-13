@@ -18,6 +18,10 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+-- Music widget
+local cmus_widget = require('awesome-wm-widgets.cmus-widget.cmus')
+
+--Pomodor widget
 local pomodoroarc_widget = require("myWidgets.pomodoroarc-widget.pomodoroarc")
 local debian = require("debian.menu")
 local has_fdo, freedesktop = pcall(require, "freedesktop")
@@ -238,6 +242,10 @@ awful.screen.connect_for_each_screen(function(s)
       layout = wibox.layout.fixed.horizontal,
       mykeyboardlayout,
       pomodoroarc_widget,
+      cmus_widget(),
+      cmus_widget {
+        path_to_icons = "/usr/share/icons/"
+      },
       wibox.widget.systray(),
       mytextclock,
       s.mylayoutbox,
@@ -256,6 +264,13 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
+  awful.key({ modkey, "Ctrl" }, "p", function() cmus_widget:play_pause() end,
+    { description = "toggle track", group = "cmus" }),
+  awful.key({ modkey, "Ctrl" }, "Right", function() cmus_widget:next_track() end,
+    { description = "next track", group = "cmus" }),
+  awful.key({ modkey, "Ctrl" }, "Left", function() cmus_widget:prev_track() end,
+    { description = "previous track", group = "cmus" }),
+  awful.key({ modkey, "Ctrl" }, "s", function() cmus_widget:stop() end, { description = "stop track", group = "cmus" }),
   awful.key({ modkey, "Shift" }, "r", function() awful.spawn("pomo start") end,
     { description = "start", group = "pomodoro" }),
   awful.key({ modkey, "Shift" }, "p", function() awful.spawn("pomo pause") end,
