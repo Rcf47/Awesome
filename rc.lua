@@ -244,8 +244,7 @@ awful.screen.connect_for_each_screen(function(s)
       pomodoroarc_widget,
       cmus_widget(),
       cmus_widget {
-        max_length = 100,
-        path_to_icons = "/usr/share/icons/"
+        max_length = 30,
       },
       wibox.widget.systray(),
       mytextclock,
