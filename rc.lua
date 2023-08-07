@@ -345,6 +345,27 @@ globalkeys = gears.table.join(
   awful.key({ modkey, "Shift" }, "space", function() awful.layout.inc(-1) end,
     { description = "select previous", group = "layout" }),
 
+  -- Горячая клавиша для установки компоновки Floating
+  awful.key({ modkey, "Shift" }, "f", function()
+      awful.layout.set(awful.layout.suit.floating)
+    end,
+    { description = "Floating компоновка", group = "Разделение окон" }),
+
+  -- Горячая клавиша для установки компоновки Tile Bottom
+  awful.key({ modkey, "Shift" }, "b", function()
+      awful.layout.set(awful.layout.suit.tile.bottom)
+    end,
+    { description = "Tile Bottom компоновка", group = "Разделение окон" }),
+  -- Shortcut for tile
+  awful.key({ modkey, "Shift" }, "t", function()
+      awful.layout.set(awful.layout.suit.tile)
+    end,
+    { description = "Tile компоновка", group = "Разделение окон" }),
+  -- Shortcut for fair
+  awful.key({ modkey, "Shift" }, "v", function()
+      awful.layout.set(awful.layout.suit.fair)
+    end,
+    { description = "Fair компоновка", group = "Разделение окон" }),
   awful.key({ modkey, "Control" }, "n",
     function()
       local c = awful.client.restore()
