@@ -574,7 +574,7 @@ awful.rules.rules = {
     properties = { titlebars_enabled = false }
   },
 
-  -- Set Firefox to always map on the tag named "2" on screen 1.
+  -- Set rules for map some programms on tag
   {
     rule = { class = "steam" },
     properties = { screen = 1, tag = "Others" }
