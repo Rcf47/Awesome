@@ -673,10 +673,13 @@ do
   {
     "google-chrome",
     "wezterm",
-    "steam"
+    "steam",
+    "opera"
   }
 
   for _, i in pairs(cmds) do
-    awful.util.spawn(i)
+    if not awful.util.pread("pgrep -x " .. i) then
+      awful.util.spawn(i)
+    end
   end
 end
