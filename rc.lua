@@ -595,6 +595,10 @@ awful.rules.rules = {
     rule = { class = "Google-chrome" },
     properties = { screen = 1, tag = "Chrome" }
   },
+  {
+    rule = { class = "Opera" },
+    properties = { screen = 1, tag = "GPT", maximized = true }
+  },
 }
 -- }}}
 
