@@ -51,7 +51,6 @@ theme.taglist_squares_sel                       = theme_assets.taglist_squares_s
 theme.taglist_squares_unsel                     = theme_assets.taglist_squares_unsel(
     taglist_square_size, theme.fg_normal
 )
-
 -- Variables set for theming notifications:
 -- notification_font
 -- notification_[bg|fg]
@@ -101,6 +100,10 @@ theme.titlebar_maximized_button_focus_inactive  = themes_path .. "default/titleb
 theme.titlebar_maximized_button_normal_active   = themes_path .. "default/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active    = themes_path .. "default/titlebar/maximized_focus_active.png"
 
+local wallpaper_path                            = {
+    [1] = "~/Pictures/Wallpaper/ubuntu-lucid-wallpaper-preview.jpg",
+    [2] = "~/Pictures/Wallpaper/abstract-planet-space-purple-wallpaper-preview.jpg"
+}
 theme.wallpaper                                 = "~/Pictures/Wallpaper/ubuntu-lucid-wallpaper-preview.jpg"
 
 -- You can use your own layout icons like this:
