@@ -688,6 +688,15 @@ do
   end
 end
 do
+  -- Проверка запущенной программы
+  function isProgramRunning(program)
+    local cmd = "pgrep -x " .. program
+    local handle = io.popen(cmd)
+    local result = handle:read("*a")
+    handle:close()
+    return result ~= ""
+  end
+
   local cmds =
   {
     "google-chrome",
@@ -697,8 +706,10 @@ do
   }
 
   for _, i in pairs(cmds) do
-    if not is_restart() then
+    if not isProgramRunning(i) then
       awful.spawn.single_instance(i)
     end
   end
 end
+
+awful.spawn.with_shell("docker run -p 1338:1338 ramonvc/freegpt-webui")
