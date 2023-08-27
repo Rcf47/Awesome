@@ -194,9 +194,17 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
+-- Define your wallpapers
+local wallpapers = {
+  ["Chrome"] = "~/Pictures/Wallpaper/abstract-planet-space-purple-wallpaper-preview.jpg",
+  ["Terminal"] = "~/Pictures/Wallpaper/ubuntu-lucid-wallpaper-preview.jpg",
+  ["Others"] = "~/Pictures/Wallpaper/wall.png",
+  -- Add more wallpapers for each tag here
+}
 awful.screen.connect_for_each_screen(function(s)
   -- Wallpaper
-  set_wallpaper(s)
+
+  -- set_wallpaper(s)
 
   -- Each screen has its own tag table.
   awful.tag({ "Chrome", "Terminal", "Others", "Telegram", "GPT", "6", "7" }, s, awful.layout.layouts[1])
