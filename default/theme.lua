@@ -2,6 +2,8 @@
 -- Default awesome theme --
 ---------------------------
 
+local awful                                     = require("awful")
+
 local theme_assets                              = require("beautiful.theme_assets")
 local xresources                                = require("beautiful.xresources")
 local dpi                                       = xresources.apply_dpi
@@ -101,11 +103,25 @@ theme.titlebar_maximized_button_normal_active   = themes_path .. "default/titleb
 theme.titlebar_maximized_button_focus_active    = themes_path .. "default/titlebar/maximized_focus_active.png"
 
 local wallpaper_path                            = {
-    [1] = "~/Pictures/Wallpaper/ubuntu-lucid-wallpaper-preview.jpg",
-    [2] = "~/Pictures/Wallpaper/abstract-planet-space-purple-wallpaper-preview.jpg"
+    ["Chrome"] = "~/Pictures/Wallpaper/ubuntu-lucid-wallpaper-preview.jpg",
+    ["Terminal"] = "~/Pictures/Wallpaper/abstract-planet-space-purple-wallpaper-preview.jpg",
+    ["Others"] = "~/Pictures/Wallpaper/wall.png",
+    ["Telegram"] = "~/Pictures/Wallpaper/autumn-forest-wallpaper.1920x1080.jpg",
+    ["GPT"] = "~/Pictures/Wallpaper/gory_tuchi_more_69213_1920x1080.jpg",
+    ["6"] = "~/Pictures/Wallpaper/maiak_luna_pirs_125189_1920x1080.jpg",
+    ["7"] = "~/Pictures/Wallpaper/gorod_futurizm_scifi_131831_1920x1080.jpg"
 }
-theme.wallpaper                                 = "~/Pictures/Wallpaper/ubuntu-lucid-wallpaper-preview.jpg"
+for tag, wallpaper in pairs(wallpaper_path) do
+    awful.tag.attached_connect_signal(1, "property::selected", function()
+        local focused = awful.screen.focused()
 
+        if focused.selected_tag and focused.selected_tag.name == tag then
+            theme.wallpaper = wallpaper
+            theme.wallpaper_cmd = { "feh", "--bg-fill", wallpaper }
+            os.execute("feh --bg-fill " .. wallpaper)
+        end
+    end)
+end
 -- You can use your own layout icons like this:
 theme.layout_fairh                              = themes_path .. "default/layouts/fairhw.png"
 theme.layout_fairv                              = themes_path .. "default/layouts/fairvw.png"
