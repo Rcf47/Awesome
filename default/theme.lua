@@ -103,8 +103,8 @@ theme.titlebar_maximized_button_normal_active   = themes_path .. "default/titleb
 theme.titlebar_maximized_button_focus_active    = themes_path .. "default/titlebar/maximized_focus_active.png"
 
 local wallpaper_path                            = {
-    ["Chrome"] = "~/Pictures/Wallpaper/ubuntu-lucid-wallpaper-preview.jpg",
-    ["Terminal"] = "~/Pictures/Wallpaper/abstract-planet-space-purple-wallpaper-preview.jpg",
+    ["Chrome"] = "~/Pictures/Wallpaper/abstract-planet-space-purple-wallpaper-preview.jpg",
+    ["Terminal"] = "~/Pictures/Wallpaper/ubuntu-lucid-wallpaper-preview.jpg",
     ["Others"] = "~/Pictures/Wallpaper/wall.png",
     ["Telegram"] = "~/Pictures/Wallpaper/autumn-forest-wallpaper.1920x1080.jpg",
     ["GPT"] = "~/Pictures/Wallpaper/gory_tuchi_more_69213_1920x1080.jpg",
