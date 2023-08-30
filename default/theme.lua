@@ -108,8 +108,8 @@ local wallpaper_path                            = {
     ["Others"] = "~/Pictures/Wallpaper/wall.png",
     ["Telegram"] = "~/Pictures/Wallpaper/autumn-forest-wallpaper.1920x1080.jpg",
     ["GPT"] = "~/Pictures/Wallpaper/gory_tuchi_more_69213_1920x1080.jpg",
-    ["6"] = "~/Pictures/Wallpaper/maiak_luna_pirs_125189_1920x1080.jpg",
-    ["7"] = "~/Pictures/Wallpaper/gorod_futurizm_scifi_131831_1920x1080.jpg"
+    ["WorkProgramms"] = "~/Pictures/Wallpaper/maiak_luna_pirs_125189_1920x1080.jpg",
+    ["Relax"] = "~/Pictures/Wallpaper/gorod_futurizm_scifi_131831_1920x1080.jpg"
 }
 for tag, wallpaper in pairs(wallpaper_path) do
     awful.tag.attached_connect_signal(1, "property::selected", function()
