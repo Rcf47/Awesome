@@ -266,6 +266,8 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
+  awful.key({}, "Print", function() awful.util.spawn_with_shell("gnome-screenshot --interactive") end,
+    { description = "screenshot", group = "screenshot" }),
   awful.key({ modkey, "Ctrl" }, "p", function() cmus_widget:play_pause() end,
     { description = "toggle track", group = "cmus" }),
   awful.key({ modkey, "Ctrl" }, "Right", function() cmus_widget:next_track() end,
