@@ -705,7 +705,6 @@ do
   {
     "google-chrome",
     "wezterm",
-    "steam",
     "opera"
   }
 
