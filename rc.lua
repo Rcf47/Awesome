@@ -735,3 +735,4 @@ do
 end
 
 --awful.spawn.with_shell("docker run -p 1338:1338 ramonvc/freegpt-webui")
+awful.spawn.with_shell("docker run -d -p 8858:8858 -it fantasypeak/freegpt:latest")
