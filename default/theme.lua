@@ -17,12 +17,12 @@ theme.font = "Fira Code 16"
 
 theme.bg_normal = "#1E1E2E"
 theme.bg_focus = "#1E1E2E"
-theme.bg_urgent = "#f38ba8"
+theme.bg_urgent = "#00cfff"
 theme.bg_minimize = "#444444"
 theme.bg_systray = theme.bg_normal
 
 theme.fg_normal = "#cdd6f4"
-theme.fg_focus = "#f38ba8"
+theme.fg_focus = "#00cfff"
 theme.fg_urgent = "#cdd6f4"
 theme.fg_minimize = "#ffffff"
 
