@@ -24,6 +24,9 @@ local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 -- RAM widget
 local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 
+-- TODO widget
+local todo_widget = require("awesome-wm-widgets.todo-widget.todo")
+
 -- Music widget
 local cmus_widget = require("awesome-wm-widgets.cmus-widget.cmus")
 
