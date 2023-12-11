@@ -314,15 +314,15 @@ globalkeys = gears.table.join(
 	awful.key({ modkey, "Ctrl" }, "s", function()
 		cmus_widget:stop()
 	end, { description = "stop track", group = "cmus" }),
-	awful.key({ modkey, "Shift" }, "r", function()
-		awful.spawn("pomo start")
-	end, { description = "start", group = "pomodoro" }),
-	awful.key({ modkey, "Shift" }, "p", function()
-		awful.spawn("pomo pause")
-	end, { description = "pause", group = "pomodoro" }),
-	awful.key({ modkey, "Shift" }, "s", function()
-		awful.spawn("pomo stop")
-	end, { description = "stop", group = "pomodoro" }),
+	--	awful.key({ modkey, "Shift" }, "r", function()
+	--		awful.spawn("pomo start")
+	--	end, { description = "start", group = "pomodoro" }),
+	--	awful.key({ modkey, "Shift" }, "p", function()
+	--		awful.spawn("pomo pause")
+	--	end, { description = "pause", group = "pomodoro" }),
+	--	awful.key({ modkey, "Shift" }, "s", function()
+	--		awful.spawn("pomo stop")
+	--	end, { description = "stop", group = "pomodoro" }),
 	awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
 	awful.key({ modkey }, "Left", awful.tag.viewprev, { description = "view previous", group = "tag" }),
 	awful.key({ modkey }, "Right", awful.tag.viewnext, { description = "view next", group = "tag" }),
