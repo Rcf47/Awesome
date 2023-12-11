@@ -275,6 +275,7 @@ awful.screen.connect_for_each_screen(function(s)
 			mykeyboardlayout,
 			cpu_widget(),
 			ram_widget(),
+			todo_widget(),
 			cmus_widget(),
 			cmus_widget({
 				max_length = 30,
