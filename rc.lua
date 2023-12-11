@@ -18,7 +18,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
--- cpu widget
+-- Cpu widget
 local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 
 -- Music widget
