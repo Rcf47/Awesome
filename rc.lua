@@ -21,6 +21,9 @@ require("awful.hotkeys_popup.keys")
 -- Cpu widget
 local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 
+-- RAM widget
+local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
+
 -- Music widget
 local cmus_widget = require("awesome-wm-widgets.cmus-widget.cmus")
 
@@ -274,6 +277,7 @@ awful.screen.connect_for_each_screen(function(s)
 			mykeyboardlayout,
 			pomodoroarc_widget,
 			cpu_widget(),
+			ram_widget(),
 			cmus_widget(),
 			cmus_widget({
 				max_length = 30,
