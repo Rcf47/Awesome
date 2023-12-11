@@ -18,6 +18,9 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+-- cpu widget
+local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
+
 -- Music widget
 local cmus_widget = require("awesome-wm-widgets.cmus-widget.cmus")
 
@@ -270,6 +273,7 @@ awful.screen.connect_for_each_screen(function(s)
 			layout = wibox.layout.fixed.horizontal,
 			mykeyboardlayout,
 			pomodoroarc_widget,
+			cpu_widget(),
 			cmus_widget(),
 			cmus_widget({
 				max_length = 30,
