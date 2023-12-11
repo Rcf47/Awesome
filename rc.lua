@@ -27,8 +27,6 @@ local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 -- Music widget
 local cmus_widget = require("awesome-wm-widgets.cmus-widget.cmus")
 
---Pomodor widget
-local pomodoroarc_widget = require("myWidgets.pomodoroarc-widget.pomodoroarc")
 local debian = require("debian.menu")
 local has_fdo, freedesktop = pcall(require, "freedesktop")
 --connect autorun
@@ -275,7 +273,6 @@ awful.screen.connect_for_each_screen(function(s)
 		{ -- Right widgets
 			layout = wibox.layout.fixed.horizontal,
 			mykeyboardlayout,
-			pomodoroarc_widget,
 			cpu_widget(),
 			ram_widget(),
 			cmus_widget(),
