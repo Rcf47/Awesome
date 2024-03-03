@@ -104,7 +104,7 @@ local wallpaper_path = {
 	["Others"] = "~/Pictures/Wallpaper/wall.png",
 	["Telegram"] = "~/Pictures/Wallpaper/autumn-forest-wallpaper.1920x1080.jpg",
 	["GPT"] = "~/Pictures/Wallpaper/gory_tuchi_more_69213_1920x1080.jpg",
-	["WorkProgramms"] = "~/Pictures/Wallpaper/maiak_luna_pirs_125189_1920x1080.jpg",
+	["WorkProgramms"] = "~/Pictures/Wallpaper/sunset.jpeg",
 	["Relax"] = "~/Pictures/Wallpaper/dark-cat-rosewater.png",
 }
 for tag, wallpaper in pairs(wallpaper_path) do
